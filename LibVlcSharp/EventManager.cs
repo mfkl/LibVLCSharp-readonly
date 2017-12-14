@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security;
 using VideoLAN.LibVLC.Events;
@@ -7,7 +8,7 @@ namespace VideoLAN.LibVLC
 {
     public abstract class EventManager
     {
-        public struct Internal
+        public struct Native
         {
             [SuppressUnmanagedCodeSecurity]
             [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl, EntryPoint = "libvlc_event_attach")]
@@ -21,6 +22,7 @@ namespace VideoLAN.LibVLC
         }
 
         public IntPtr NativeReference;
+        static readonly List<EventCallback> Cb = new List<EventCallback>();
 
         protected EventManager(IntPtr ptr)
         {
@@ -32,13 +34,15 @@ namespace VideoLAN.LibVLC
 
         protected void AttachEvent(EventType eventType, EventCallback eventCallback)
         {
-            if(Internal.LibVLCEventAttach(NativeReference, eventType, eventCallback, IntPtr.Zero) != 0)
+            if(Native.LibVLCEventAttach(NativeReference, eventType, eventCallback, IntPtr.Zero) != 0)
                 throw new VLCException($"Could not attach event {eventType}");
+            Cb.Add(eventCallback);
         }
 
         protected void DetachEvent(EventType eventType, EventCallback eventCallback)
         {
-            Internal.LibVLCEventDetach(NativeReference, eventType, eventCallback, IntPtr.Zero);
+            Native.LibVLCEventDetach(NativeReference, eventType, eventCallback, IntPtr.Zero);
+            Cb.Remove(eventCallback);
         }
 
         protected LibVLCEvent RetrieveEvent(IntPtr eventPtr)
