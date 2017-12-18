@@ -21,11 +21,10 @@ namespace LibVLCSharp.WPF.Sample
             var window = Window.GetWindow(this);
             var wi = new WindowInteropHelper(window);
 
-            _core = new MediaElementCore
+            _core = new MediaElementCore(action => Dispatcher.InvokeAsync(action))
             {
                 Media = new MyMedia(Media.FromType.FromLocation,
                     "http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4"),
-                PlatformDispatcher = action => Dispatcher.InvokeAsync(action),
                 DrawableSurface = wi.Handle
             };
 

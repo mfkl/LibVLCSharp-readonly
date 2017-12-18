@@ -12,11 +12,15 @@ namespace VideoLAN.LibVLC
     {
         readonly Instance _instance;
         readonly MediaPlayer _mp;
-        Action<Action> _dispatcher;
         bool _hardwareAcceleration;
+        readonly Action<Action> _uiDispatcher;
 
-        public MediaElementCore()
+        public MediaElementCore(Action<Action> uiDispatcher)
         {
+            if(uiDispatcher == null)
+                throw new NullReferenceException(nameof(uiDispatcher));
+
+            _uiDispatcher = uiDispatcher;
             _instance = new Instance();  
             _mp = new MediaPlayer(_instance);
             Subscribe(_mp.EventManager);
@@ -43,11 +47,6 @@ namespace VideoLAN.LibVLC
         public uint XWindow
         {
             set => _mp.XWindow = value;
-        }
-
-        public Action<Action> PlatformDispatcher
-        {
-            set => _dispatcher = value;
         }
 
         void Subscribe(MediaPlayerEventManager eventManager)
@@ -217,13 +216,12 @@ namespace VideoLAN.LibVLC
             mediaEventManager.SubItemTreeAdded -= MediaEventManagerOnSubItemTreeAdded;
         }
 
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            _uiDispatcher.Invoke(() => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)));
         }
 
         public bool HardwareAcceleration
