@@ -12,11 +12,11 @@ namespace LibVLCSharp.Tests
             Assert.Throws<VLCException>(UnavailableAPIMethod);
         }
 
-        [LibVLC(int.MaxValue)]
+        ////[LibVLC(int.MaxValue)]
         void UnavailableAPIMethod() => Assert.Fail("should not reach here");
 
         bool _result;
-        [LibVLC(major: 0, minor: 0, min: false, strict: true)]
+        ////[LibVLC(major: 0, minor: 0, min: false, strict: true)]
         public bool UnavailableAPIProperty
         {
             get { Assert.Fail(); return _result; }

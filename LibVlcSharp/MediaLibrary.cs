@@ -9,17 +9,17 @@ namespace VideoLAN.LibVLC
         struct Native
         {
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_media_library_new")]
             internal static extern IntPtr LibVLCMediaLibraryNew(IntPtr instance);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_media_library_release")]
             internal static extern void LibVLCMediaLibraryRelease(IntPtr mediaLibrary);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_media_library_load")]
             internal static extern int LibVLCMediaLibraryLoad(IntPtr mediaLibrary);
         }

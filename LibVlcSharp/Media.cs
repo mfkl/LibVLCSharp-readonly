@@ -17,7 +17,7 @@ namespace VideoLAN.LibVLC
         internal struct Internal
         {
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport("__Internal", CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_media_new_location")]
             internal static extern IntPtr LibVLCMediaNewLocation(IntPtr instance, [MarshalAs(UnmanagedType.LPStr)] string mrl);
 
@@ -378,8 +378,9 @@ namespace VideoLAN.LibVLC
         /// <param name="instance"></param>
         /// <param name="stream"></param>
         /// <param name="options"></param>
-        [LibVLC(3)]
+        ////["libvlc"(3)]
         public Media(Instance instance, Stream stream, params string[] options)
+
         {
             if(instance == null) throw new ArgumentNullException(nameof(instance));
             if (stream == null) throw new ArgumentNullException(nameof(stream));
@@ -411,7 +412,7 @@ namespace VideoLAN.LibVLC
             NativeReference = mediaPtr;
         }
 
-        public Media() { }
+        //public Media() { }
 
         /// <summary>Add an option to the media.</summary>
         /// <param name="options">the options (as a string)</param>
@@ -421,7 +422,7 @@ namespace VideoLAN.LibVLC
         /// <para>reading/streaming options on a per-media basis.</para>
         /// <para>The options are listed in 'vlc --long-help' from the command line,</para>
         /// <para>e.g. &quot;-sout-all&quot;. Keep in mind that available options and their semantics</para>
-        /// <para>vary across LibVLC versions and builds.</para>
+        /// <para>vary acrossLibVLC versions and builds.</para>
         /// <para>Not all options affects libvlc_media_t objects:</para>
         /// <para>Specifically, due to architectural issues most audio and video options,</para>
         /// <para>such as text renderer options, have no effects on an individual media.</para>
@@ -470,12 +471,12 @@ namespace VideoLAN.LibVLC
         }
 
         /// <summary>Duplicate a media descriptor object.</summary>
-        public Media Duplicate()
-        {
-            var duplicatePtr = Internal.LibVLCMediaDuplicate(NativeReference);
-            if(duplicatePtr == IntPtr.Zero) throw new Exception("Failure to duplicate");
-            return new Media(duplicatePtr);
-        }
+        //public Media Duplicate()
+        //{
+        //    var duplicatePtr = Internal.LibVLCMediaDuplicate(NativeReference);
+        //    if(duplicatePtr == IntPtr.Zero) throw new Exception("Failure to duplicate");
+        //    return new Media(duplicatePtr);
+        //}
 
         /// <summary>Read the meta of the media.</summary>
         /// <param name="metadataType">the meta to read</param>
@@ -611,7 +612,7 @@ namespace VideoLAN.LibVLC
         /// <para>libvlc_media_tracks_get</para>
         /// <para>libvlc_media_get_parsed_status</para>
         /// <para>libvlc_media_parse_flag_t</para>
-        /// <para>LibVLC 3.0.0 or later</para>
+        /// <para>"libvlc" 3.0.0 or later</para>
         /// </remarks>
         public bool ParseWithOptions(MediaParseOptions parseOptions, int timeout = -1)
         {
@@ -623,7 +624,7 @@ namespace VideoLAN.LibVLC
         /// <remarks>
         /// <para>libvlc_MediaParsedChanged</para>
         /// <para>libvlc_media_parsed_status_t</para>
-        /// <para>LibVLC 3.0.0 or later</para>
+        /// <para>"libvlc" 3.0.0 or later</para>
         /// </remarks>
         public MediaParsedStatus ParsedStatus => Internal.LibVLCMediaGetParsedStatus(NativeReference);
 
@@ -632,7 +633,7 @@ namespace VideoLAN.LibVLC
         /// <para>When the media parsing is stopped, the libvlc_MediaParsedChanged event will</para>
         /// <para>be sent with the libvlc_media_parsed_status_timeout status.</para>
         /// <para>libvlc_media_parse_with_options</para>
-        /// <para>LibVLC 3.0.0 or later</para>
+        /// <para>"libvlc" 3.0.0 or later</para>
         /// </remarks>
         public void ParseStop()
         {
@@ -642,8 +643,8 @@ namespace VideoLAN.LibVLC
         // TODO: Whats userData?
         //public IntPtr UserData
         //{
-        //    get => Native.LibVLCMediaGetUserData(NativeReference);
-        //    set => Native.LibVLCMediaSetUserData(NativeReference, IntPtr.Zero);
+        //    get => Native."libvlc"MediaGetUserData(NativeReference);
+        //    set => Native."libvlc"MediaSetUserData(NativeReference, IntPtr.Zero);
         //}
 
         /// <summary>Get media descriptor's elementary streams description</summary>
@@ -655,7 +656,7 @@ namespace VideoLAN.LibVLC
         /// <para>Note, you need to call libvlc_media_parse() or play the media at least once</para>
         /// <para>before calling this function.</para>
         /// <para>Not doing this will result in an empty array.</para>
-        /// <para>LibVLC 2.1.0 and later.</para>
+        /// <para>"libvlc" 2.1.0 and later.</para>
         /// </remarks>
         public IEnumerable<MediaTrack> Tracks
         {
@@ -708,7 +709,7 @@ namespace VideoLAN.LibVLC
         /// <para>This function must be called before the media is parsed (via</para>
         /// <para>libvlc_media_parse_with_options()) or before the media is played (via</para>
         /// <para>libvlc_media_player_play())</para>
-        /// <para>LibVLC 3.0.0 and later.</para>
+        /// <para>"libvlc" 3.0.0 and later.</para>
         /// </remarks>
         public bool AddSlave(MediaSlaveType type, uint priority, string uri)
         {
@@ -719,7 +720,7 @@ namespace VideoLAN.LibVLC
         /// <para>Clear all slaves previously added by libvlc_media_slaves_add() or</para>
         /// <para>internally.</para>
         /// </summary>
-        /// <remarks>LibVLC 3.0.0 and later.</remarks>
+        /// <remarks>"libvlc" 3.0.0 and later.</remarks>
         public void ClearSlaves()
         {
             Internal.LibVLCMediaClearSlaves(NativeReference);    
@@ -733,7 +734,7 @@ namespace VideoLAN.LibVLC
         /// <para>The list will contain slaves parsed by VLC or previously added by</para>
         /// <para>libvlc_media_slaves_add(). The typical use case of this function is to save</para>
         /// <para>a list of slave in a database for a later use.</para>
-        /// <para>LibVLC 3.0.0 and later.</para>
+        /// <para>"libvlc" 3.0.0 and later.</para>
         /// <para>libvlc_media_slaves_add</para>
         /// </remarks>
         public IEnumerable<MediaSlave> Slaves
@@ -911,7 +912,7 @@ namespace VideoLAN.LibVLC
     /// <para>It consists of a media location and various optional meta data.</para>
     /// <para>@{</para>
     /// <para></para>
-    /// <para>LibVLC media item/descriptor external API</para>
+    /// <para>"libvlc" media item/descriptor external API</para>
     /// </summary>
     /// <summary>Callback prototype to open a custom bitstream input media.</summary>
     /// <param name="opaque">private pointer as passed to libvlc_media_new_callbacks()</param>

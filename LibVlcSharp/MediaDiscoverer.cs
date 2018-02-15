@@ -15,42 +15,42 @@ namespace VideoLAN.LibVLC
         struct Native
         {
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_media_discoverer_new")]
             internal static extern IntPtr LibVLCMediaDiscovererNew(IntPtr instance, [MarshalAs(UnmanagedType.LPStr)] string name);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_media_discoverer_start")]
             internal static extern int LibVLCMediaDiscovererStart(IntPtr mediaDiscoverer);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_media_discoverer_stop")]
             internal static extern void LibVLCMediaDiscovererStop(IntPtr mediaDiscoverer);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_media_discoverer_release")]
             internal static extern void LibVLCMediaDiscovererRelease(IntPtr mediaDiscoverer);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_media_discoverer_localized_name")]
             internal static extern IntPtr LibVLCMediaDiscovererLocalizedName(IntPtr mediaDiscoverer);
             
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_media_discoverer_event_manager")]
             internal static extern IntPtr LibVLCMediaDiscovererEventManager(IntPtr mediaDiscoverer);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                             EntryPoint = "libvlc_media_discoverer_is_running")]
             internal static extern int LibVLCMediaDiscovererIsRunning(IntPtr mediaDiscoverer);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_media_discoverer_media_list")]
             internal static extern IntPtr LibVLCMediaDiscovererMediaList(IntPtr discovererMediaList);
         }

@@ -12,7 +12,7 @@ namespace VideoLAN.LibVLC
         {
             Release = release;
             var nativeRef = create();
-            if(nativeRef == IntPtr.Zero)
+            if (nativeRef == IntPtr.Zero)
                 throw new VLCException();
             NativeReference = nativeRef;
         }
@@ -22,5 +22,11 @@ namespace VideoLAN.LibVLC
             Release(NativeReference);
             NativeReference = IntPtr.Zero;
         }
+
+#if IPHONE
+        protected const string LibVLC = "__Internal";
+#else
+        protected const string LibVLC = "libvlc";
+#endif
     }
 }

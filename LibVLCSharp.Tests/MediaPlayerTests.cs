@@ -5,8 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using VideoLAN.LibVLC;
-using Media = VideoLAN.LibVLC.Media;
-using MediaPlayer = VideoLAN.LibVLC.MediaPlayer;
 
 namespace LibVLCSharp.Tests
 {

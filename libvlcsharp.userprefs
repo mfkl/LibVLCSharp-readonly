@@ -1,0 +1,48 @@
+﻿<Properties StartupConfiguration="{FA6CFA75-231B-4643-B82A-F88A08F0F3F9}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="LibVLCSharp.iOS/LibVLCSharp.iOS.csproj">
+    <Files>
+      <File FileName="LibVLCSharp.iOS/AppDelegate.cs" Line="4" Column="1" />
+      <File FileName="LibVLCSharp.iOS/Info.plist" />
+      <File FileName="LibVLCSharp.iOS/LaunchScreen.storyboard" />
+      <File FileName="LibVLCSharp.iOS/Main.cs" Line="3" Column="1" />
+      <File FileName="LibVLCSharp.iOS/Main.storyboard" />
+      <File FileName="LibVLCSharp.iOS/ViewController.cs" Line="5" Column="1" />
+      <File FileName="LibVLCSharp.iOS/Entitlements.plist" />
+      <File FileName="LibVLCSharp/Internal.cs" Line="29" Column="48" />
+      <File FileName="LibVLCSharp/LibVLC.cs" Line="1" Column="1" />
+      <File FileName="LibVLCSharp/Instance.cs" Line="1" Column="1" />
+      <File FileName="LibVLCSharp/MediaPlayer.cs" Line="1" Column="1" />
+      <File FileName="LibVLCSharp/Media.cs" Line="407" Column="38" />
+      <File FileName="LibVLCSharp.Tests/LibVLCSharp.Tests.csproj" Line="1" Column="1" />
+      <File FileName="LibVLCSharp/Platfom/Shared/Strings.cs" Line="1" Column="1" />
+      <File FileName="LibVLCSharp/libvlc_dialog.cs" Line="203" Column="32" />
+      <File FileName="LibVLCSharp/libvlc_media.cs" Line="163" Column="32" />
+      <File FileName="LibVLCSharp/Structures/AudioOutputDescription.cs" Line="25" Column="31" />
+      <File FileName="LibVLCSharp/EventManager.cs" Line="1299" Column="101" />
+      <File FileName="LibVLCSharp.iOS/LibVLCSharp.iOS.csproj" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="libvlcsharp" expanded="True">
+            <Node name="LibVLCSharp" expanded="True">
+              <Node name="Structures" expanded="True" />
+            </Node>
+            <Node name="LibVLCSharp.iOS" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <DisabledProjects>
+    <String>LibVLCSharp.Tests/LibVLCSharp.Tests.csproj</String>
+    <String>LibVLCSharp.iOS/LibVLCSharp.iOS.csproj</String>
+  </DisabledProjects>
+  <MonoDevelop.Ide.ItemProperties.Sample PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

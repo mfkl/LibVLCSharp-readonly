@@ -1,10 +1,30 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid80</TargetFrameworks>
     <RootNamespace>VideoLAN.LibVLC</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+ 
   <ItemGroup>
-    <PackageReference Include="Cauldron.Interception.Fody" Version="2.0.19" />
+    <PackageReference Include="Cauldron.Interception.Fody" Version="2.0.29" />
   </ItemGroup>
+
+     <ItemGroup>
+        <Compile Remove="Platform\**\*.cs" />
+        <None Include="Platform\**\*.cs" />
+      </ItemGroup>
+    
+    <ItemGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">
+        <Compile Include="Platform\iOS\*.cs" />
+    </ItemGroup>
+
+     <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid80' ">
+        <Compile Include="Platform\Android\*.cs" />
+    </ItemGroup>
+    
+   
+
+     <ItemGroup>
+       <Folder Include="Platfom\Shared\" />
+     </ItemGroup>
 </Project>

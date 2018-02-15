@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -6,6 +6,7 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using VideoLAN.LibVLC.Events;
+using VideoLAN.LibVLC.Platfom.Shared;
 using VideoLAN.LibVLC.Structures;
 
 namespace VideoLAN.LibVLC
@@ -43,103 +44,104 @@ namespace VideoLAN.LibVLC
             return NativeReference.GetHashCode();
         }
 
-        [StructLayout(LayoutKind.Explicit, Size = 0)]
-        internal struct Native
+//        [StructLayout(LayoutKind.Explicit, Size = 0)]
+        struct Native
         {
+          
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_new")]
             internal static extern unsafe IntPtr LibVLCNew(int argc, sbyte** argv);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_release")]
             internal static extern void LibVLCRelease(IntPtr instance);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_add_intf")]
             internal static extern int LibVLCAddInterface(IntPtr instance, [MarshalAs(UnmanagedType.LPStr)] string name);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_set_exit_handler")]
             internal static extern void LibVLCSetExitHandler(IntPtr instance, IntPtr cb, IntPtr opaque);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_set_user_agent")]
             internal static extern void LibVLCSetUserAgent(IntPtr instance, [MarshalAs(UnmanagedType.LPStr)] string name, 
                 [MarshalAs(UnmanagedType.LPStr)] string http);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_set_app_id")]
             internal static extern void LibVLCSetAppId(IntPtr instance, [MarshalAs(UnmanagedType.LPStr)] string id, 
                 [MarshalAs(UnmanagedType.LPStr)] string version, [MarshalAs(UnmanagedType.LPStr)] string icon);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_log_unset")]
             internal static extern void LibVLCLogUnset(IntPtr instance);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_log_set_file")]
             internal static extern void LibVLCLogSetFile(IntPtr instance, IntPtr stream);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 CharSet = CharSet.Ansi, EntryPoint = "libvlc_log_get_context")]
             internal static extern void LibVLCLogGetContext(IntPtr ctx, out IntPtr module, out IntPtr file, out UIntPtr line);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_log_set")]
             internal static extern void LibVLCLogSet(IntPtr instance, LogCallback cb, IntPtr data);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_module_description_list_release")]
             internal static extern void LibVLCModuleDescriptionListRelease(IntPtr moduleDescriptionList);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_audio_filter_list_get")]
             internal static extern IntPtr LibVLCAudioFilterListGet(IntPtr instance);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_video_filter_list_get")]
             internal static extern IntPtr LibVLCVideoFilterListGet(IntPtr instance);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_audio_output_list_get")]
             internal static extern IntPtr LibVLCAudioOutputListGet(IntPtr instance);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_audio_output_list_release")]
             internal static extern void LibVLCAudioOutputListRelease(IntPtr list);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_audio_output_device_list_get")]
             internal static extern IntPtr LibVLCAudioOutputDeviceListGet(IntPtr instance, [MarshalAs(UnmanagedType.LPStr)] string aout);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_audio_output_device_list_release")]
             internal static extern void LibVLCAudioOutputDeviceListRelease(IntPtr list);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_media_discoverer_list_get")]
             internal static extern ulong LibVLCMediaDiscovererListGet(IntPtr instance, MediaDiscoverer.Category category, ref IntPtr pppServices);
 
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_media_discoverer_list_release")]
             internal static extern void LibVLCMediaDiscovererListRelease(IntPtr ppServices, ulong count);
             
@@ -202,7 +204,7 @@ namespace VideoLAN.LibVLC
             const string Linux = "libc";
             const string Mac = "libSystem";
             const string Write = "w";
-        }
+       }
     
         internal static readonly System.Collections.Concurrent.ConcurrentDictionary<IntPtr, Instance> NativeToManagedMap 
             = new System.Collections.Concurrent.ConcurrentDictionary<IntPtr, Instance>();
@@ -256,20 +258,20 @@ namespace VideoLAN.LibVLC
             {
                 unsafe
                 {
-                    if (args == null || !args.Any())
+                   // if (args == null || !args.Any())
                         return Native.LibVLCNew(argc, null);
-                    fixed (byte* arg0 = Encoding.ASCII.GetBytes(args[0]),
-                        arg1 = Encoding.ASCII.GetBytes(args[1]),
-                        arg2 = Encoding.ASCII.GetBytes(args[2]))
-                    {
-                        sbyte*[] arr = { (sbyte*)arg0, (sbyte*)arg1, (sbyte*)arg2 };
-                        fixed (sbyte** argv = arr)
-                        {
-                            return Native.LibVLCNew(argc, argv);
-                        }
-                    }
+                //    fixed (byte* arg0 = Encoding.ASCII.GetBytes(args[0]),
+                //        arg1 = Encoding.ASCII.GetBytes(args[1]),
+                //        arg2 = Encoding.ASCII.GetBytes(args[2]))
+                //    {
+                //        sbyte*[] arr = { (sbyte*)arg0, (sbyte*)arg1, (sbyte*)arg2 };
+                //        fixed (sbyte** argv = arr)
+                //        {
+                //            return LibVLCNew(argc, argv);
+                //        }
+                //    }
                 }
-            }, Native.LibVLCRelease)
+        }, Native.LibVLCRelease)
         {
             __ownsNativeInstance = true;
             NativeToManagedMap[NativeReference] = this;
@@ -476,7 +478,7 @@ namespace VideoLAN.LibVLC
                 return Retrieve(() => Native.LibVLCAudioFilterListGet(NativeReference),
                     Marshal.PtrToStructure<ModuleDescription.Internal>,
                     intern => ModuleDescription.__CreateInstance(intern),
-                    module => module.Next, Native.LibVLCModuleDescriptionListRelease);
+                                module => module.Next, Native.LibVLCModuleDescriptionListRelease);
             }
         }
 
@@ -496,7 +498,7 @@ namespace VideoLAN.LibVLC
                 return Retrieve(() => Native.LibVLCVideoFilterListGet(NativeReference),
                     Marshal.PtrToStructure<ModuleDescription.Internal>,
                     intern => ModuleDescription.__CreateInstance(intern),
-                    module => module.Next, Native.LibVLCModuleDescriptionListRelease);
+                                module => module.Next, Native.LibVLCModuleDescriptionListRelease);
             }
         }
 
@@ -514,7 +516,7 @@ namespace VideoLAN.LibVLC
                 return Retrieve(() => Native.LibVLCAudioOutputListGet(NativeReference),
                     Marshal.PtrToStructure<AudioOutputDescription.Internal>,
                     intern => AudioOutputDescription.__CreateInstance(intern),
-                    module => module.Next, Native.LibVLCAudioOutputListRelease);
+                                module => module.Next, Native.LibVLCAudioOutputListRelease);
             }
         }
         
@@ -544,7 +546,7 @@ namespace VideoLAN.LibVLC
             return Retrieve(() => Native.LibVLCAudioOutputDeviceListGet(NativeReference, audioOutputName), 
                 Marshal.PtrToStructure<AudioOutputDevice.Internal>, 
                 s => AudioOutputDevice.__CreateInstance(s),
-                device => device.Next, Native.LibVLCAudioOutputDeviceListRelease);
+                            device => device.Next, Native.LibVLCAudioOutputDeviceListRelease);
         }
         
         /// <summary>Get media discoverer services by category</summary>

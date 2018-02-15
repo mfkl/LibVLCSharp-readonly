@@ -6,7 +6,7 @@ using Cauldron.Interception;
 
 namespace VideoLAN.LibVLC
 {
-    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Constructor | AttributeTargets.Property, 
+ /*   [AttributeUsage(AttributeTargets.Method | AttributeTargets.Constructor | AttributeTargets.Property, 
         AllowMultiple = true, 
         Inherited = false)]
     public class LibVLC : Attribute, IMethodInterceptor, IPropertyGetterInterceptor
@@ -17,7 +17,7 @@ namespace VideoLAN.LibVLC
             /// <returns>a string containing the libvlc version</returns>
             /// <remarks>Example: &quot;1.1.0-git The Luggage&quot;</remarks>
             [SuppressUnmanagedCodeSecurity]
-            [DllImport("libvlc", CallingConvention = CallingConvention.Cdecl,
+            [DllImport(LibVLC, CallingConvention = CallingConvention.Cdecl,
                 EntryPoint = "libvlc_get_version")]
             internal static extern IntPtr LibVLCVersion();
         }
@@ -90,5 +90,5 @@ namespace VideoLAN.LibVLC
                     + $" version {_requiredVersion.Major}.{_requiredVersion.Minor} of libvlc. " 
                     + $"Currently used dll version is {_dllVersion.Major}.{_dllVersion.Minor}");
         }
-    }
+    }*/
 }
